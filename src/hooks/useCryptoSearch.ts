@@ -17,15 +17,15 @@ export const useCryptoSearch = create<CryptoProps>((set) => ({
   noResult: "",
   clearData: () => set(() => ({ data: [] })),
   searchCrtyptoList: async (searchTerm: string) => {
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     try {
       set(() => ({ loading: true }));
       const response = await axios.get(
         `https://api.coingecko.com/api/v3/search?query=${searchTerm}`
       );
 
-      console.log({ response });
       return set(() => ({ data: response.data.coins }));
-    } catch (error) {
+    } catch (error: any) {
       set(() => ({ error: error?.message }));
       console.log({ error });
     } finally {
