@@ -10,6 +10,7 @@ import { Label } from "../../components/ui/label";
 import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
 import { MainNav } from "../../components/ui/main-nav";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const CoinPage = () => {
   const { detail, data, fetchCrtypto } = useCoin();
   const { coinId } = useParams();
@@ -22,7 +23,7 @@ export const CoinPage = () => {
       text: `${capitalizeFirstLetter(coinId as string)} Price Chart`,
     },
     xAxis: {
-      categories: data?.prices?.map((_: Price, index: number) => {
+      categories: (data as any)?.prices?.map((_: Price, index: number) => {
         const date = format(addDays(new Date(), index), "MMM d");
         return date;
       }),
@@ -37,7 +38,7 @@ export const CoinPage = () => {
     ],
     series: [
       {
-        data: data?.prices?.map((item: Price) => item[1]) ?? [],
+        data: (data as any)?.prices?.map((item: Price) => item[1]) ?? [],
         type: "line",
       },
     ],

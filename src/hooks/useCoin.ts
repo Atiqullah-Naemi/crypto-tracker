@@ -2,6 +2,7 @@ import axios from "axios";
 import { create } from "zustand";
 import { CoinProps } from "../types";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface CryptoProps {
   loading: boolean;
   data: CoinProps[] | [];
@@ -28,7 +29,7 @@ export const useCoin = create<CryptoProps>((set) => ({
         data: response.data,
         detail: details.data,
       }));
-    } catch (error) {
+    } catch (error: any) {
       set(() => ({ error: error?.message }));
       console.log({ error });
     } finally {

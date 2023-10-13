@@ -1,6 +1,7 @@
 import ContentLoader from "react-content-loader";
 
-const DataTableLoader = (props) => (
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const DataTableLoader = (props: any) => (
   <ContentLoader
     width={1500}
     height={400}

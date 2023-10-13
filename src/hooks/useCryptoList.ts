@@ -21,8 +21,9 @@ export const useCryptoList = create<CryptoProps>((set) => ({
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=aud&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en"
       );
 
+      /* eslint-disable @typescript-eslint/no-explicit-any */
       const todayCap = response.data.reduce(
-        (acc, current: CoinMarketProps) => acc + current.market_cap,
+        (acc: any, current: CoinMarketProps) => acc + current.market_cap,
         0
       );
 
@@ -36,7 +37,7 @@ export const useCryptoList = create<CryptoProps>((set) => ({
 
         todayMarketCap: todayCap,
       }));
-    } catch (error) {
+    } catch (error: any) {
       set(() => ({ error: error?.message }));
       console.log({ error });
     } finally {
